@@ -1,3 +1,6 @@
+/* Copyright 2020 - Florian ARGAUD */
+
+// radian = Nombre de points souhaité * 2
 var canvas = document.getElementById("drawCanvas");
 
 var style = canvas.style;
@@ -10,9 +13,9 @@ let brushSize = 4;
 let color = "#1A202C";
 let brushClick = 0;
 
-/**
- *  Colors button event listner example
- *
+// colors
+
+addEventListener("load", load);
 document.getElementById("red").addEventListener("click", () => {
   color = "#FC8181";
 });
@@ -32,15 +35,8 @@ document.getElementById("purple").addEventListener("click", () => {
 document.getElementById("eraser").addEventListener("click", () => {
   color = "#fff";
 });
- */
 
-addEventListener("load", load);
-
-/**
- * 
- * Brush size event listener example
- * 
- * document.getElementById("brush").addEventListener("click", () => {
+document.getElementById("brush").addEventListener("click", () => {
   console.log(brushClick);
   if (brushClick == 1) {
     brushSize = 8;
@@ -59,17 +55,10 @@ addEventListener("load", load);
     brushClick = 2;
   }
 });
- */
 
-/**
- * To reset the canvas, simply run the load function
- * document.getElementById("reset").addEventListener("click", load);
- */
+document.getElementById("reset").addEventListener("click", load);
 
 function load() {
-  /**
-   * On your DOM, your Canvas ID must be drawCanvas
-   */
   getcanvas = document.getElementById("drawCanvas");
 
   brushClick = 0;
@@ -110,6 +99,9 @@ function draw(e) {
   }
   prevX = x;
   prevY = y;
+
+  // console.log("Symm Y : " + prevY);
+  // console.log("Symm X : " + prevX);
 }
 
 function getSymmetryPoints(x, y) {
@@ -149,6 +141,7 @@ function drawLine(x1, y1, x2, y2) {
     ctx.moveTo(startPoints[i][0], startPoints[i][1]);
     ctx.lineTo(endPoints[i][0], endPoints[i][1]);
   }
+  // anti aliased ctx.translate(0.5, 0.5);
 
   ctx.stroke();
 
