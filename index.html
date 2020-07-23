@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="symmetry.js" defer></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <title>JustMandala - Let's Chill Out!</title>
+  </head>
+  <body class="box-border w-screen h-screen">
+    <a id="link" class="hidden"></a>
+    <audio id="audio" class="hidden"></audio>
+    <div
+      id="app"
+      class="fixed m-0 pl-12 pt-2 flex flex-col justify-start items-center h-auto w-auto m-auto w-64 z-50 lg:flex-col lg:w-32"
+    >
+      <div
+        class="palette flex bg-white float-left rounded-t-full rounded-b-full p-2 shadow-md justify-evenly mr-4 lg:mb-12 lg:flex-col lg:mr-auto"
+      >
+        <button
+          id="darkgray"
+          class="bg-gray-900 w-8 h-8 rounded-full mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        ></button>
+        <button
+          id="red"
+          class="bg-red-400 w-8 h-8 rounded-full mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        ></button>
+        <button
+          id="blue"
+          class="bg-blue-400 w-8 h-8 rounded-full mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        ></button>
+        <button
+          id="green"
+          class="bg-teal-400 w-8 h-8 rounded-full mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        ></button>
+        <button
+          id="purple"
+          class="bg-purple-500 w-8 h-8 rounded-full mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        ></button>
+      </div>
+      <div
+        class="tools flex bg-white float-left rounded-t-full rounded-b-full p-2 shadow-md justify-evenly mr-4 lg:mb-12 lg:flex-col lg:mr-auto"
+      >
+        <button
+          id="brush"
+          style="font-size: 0.5rem;"
+          class="bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-gray-700 mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+          v-on:click="isBrush"
+        >
+          <i
+            :class="{'fa-xs' : counter == 0, 'fa-md': counter == 1, 'fa-lg': counter == 2, 'fa-2x': counter == 3}"
+            class="fas fa-brush"
+          ></i>
+        </button>
+
+        <button
+          id="eraser"
+          class="bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-gray-700 mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        >
+          <i class="fas fa-eraser famdx"></i>
+        </button>
+        <button
+          id="reset"
+          class="bg-red-400 w-8 h-8 rounded-full flex items-center justify-center text-white mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+          @click.prevent="counter = 0"
+        >
+          <i class="fas fa-trash fa-md"></i>
+        </button>
+        <a
+          href="https://github.com/Icesofty/Mandala-JS"
+          class="bg-gray-900 w-8 h-8 rounded-full flex items-center justify-center text-white mr-2 ml-2 mb-auto mt-auto lg:mb-2 lg:mt-2 lg:mr-auto lg:ml-auto"
+        >
+          <i class="fab fa-github fa-lg"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex z-0 items-center h-full justify-center">
+      <canvas
+        class="fixed z-0 bg-cover canV"
+        id="drawCanvas"
+        width="2000"
+        height="2000"
+      ></canvas>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          counter: 0,
+          isActive: true,
+          showMusic: false
+        },
+        methods: {
+          isBrush: function () {
+            if (this.counter == 0) {
+              this.counter = this.counter + 1;
+            } else if (this.counter == 1) {
+              this.counter++;
+            } else if (this.counter == 2) {
+              this.counter++;
+            } else if (this.counter == 3) {
+              this.counter = 0;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
